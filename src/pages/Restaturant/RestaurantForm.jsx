@@ -60,7 +60,7 @@ const RestaurantForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://travely-backend.vercel.app/api/restaurant", {
+      await axios.post("http://localhost:5000/api/restaurant", {
         name: name,
         type: type, // Replace with a valid ActivityType _id
         staffAmount: staffAmount,

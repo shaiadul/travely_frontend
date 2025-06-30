@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import {useNavigate, useParams } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const VehicleBook = () => {
     const [data, setData] = useState([]); 
     const [reserveData, setReserveData] = useState([]);
     const navigate = useNavigate();
+    const formRef = useRef();
 
     const today = new Date().toISOString().slice(0, 10);  
   
@@ -67,7 +68,7 @@ const VehicleBook = () => {
     <div className="lg:p-20">
       <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
         <img
-          src={`https://travely-backend.vercel.app/api/vehicle/images/${data.vehicleMainImg}`}
+          src={`http://localhost:5000/api/vehicle/images/${data.vehicleMainImg}`}
           alt="vehMainImg"
           className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg"
         />
@@ -89,7 +90,7 @@ const VehicleBook = () => {
             </div>
           </div>
 
-          <form className="" onSubmit={handleReserveClick}>
+          <form ref={formRef} className="" onSubmit={handleReserveClick}>
 
           <div className="flex justify-between md:flex-row">
             <div className="flex flex-col text-left">
@@ -108,7 +109,7 @@ const VehicleBook = () => {
             
           </div>
           
-          <div className="pt-4 flex">
+          {/* <div className="pt-4 flex">
             <h1 className="text-[#41A4FF] font-bold">Do you need a Driver?</h1>
               <p className="ml-6">Yes</p>
               <input type="radio" name="driver" className="ml-2" onChange={() => setDriver(true)} required></input>
@@ -117,7 +118,7 @@ const VehicleBook = () => {
               <input type="radio" name="driver"   className="ml-2" onChange={() => setDriver(false)} required></input>
             
 
-          </div>
+          </div> */}
          
           <div className="flex flex-col md:flex-row mt-6  py-2 justify-between lg:items-center">
             <div className="flex items-center">

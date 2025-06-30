@@ -51,7 +51,7 @@ const Register = () => {
       Swal.fire("Please enter a valid email address", "", "error");
       return;
     }
-    if (mobile.length !== 10) {
+    if (mobile.length !== 11) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -228,15 +228,28 @@ const Register = () => {
               />
             </div>
             <div className="mb-6">
-              <input
-                placeholder="Country"
-                type="text"
+              <select
                 id="country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="bordder-[#E9EDF4] w-full rounded-3xl border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] focus:ring outline-none focus:border-[#41A4FF] focus-visible:shadow-none"
-              />
+                className="bordder-[#E9EDF4] w-full rounded-3xl border bg-[#FCFDFE] py-3 px-5 text-base text-body-color text-[#334155] placeholder-[#ACB6BE] focus:ring outline-none focus:border-[#41A4FF] focus-visible:shadow-none"
+              >
+                <option value="" disabled>
+                  Select your country
+                </option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="India">India</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="Maldives">Maldives</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Singapore">Singapore</option>
+              </select>
             </div>
+
             <div className="mb-6">
               <div className="relative">
                 <select

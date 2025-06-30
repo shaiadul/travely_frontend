@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function Reservation({ reservation, onCancel }) {
   const { _id, activity, status, dateRange, timeRange } = reservation;
@@ -33,9 +34,20 @@ function ReservationPage() {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    axios.get("reservations").then((response) => {
-      setReservations(response.data);
-    });
+    const token = Cookies.get("access_token");
+    // if (!user) return;
+
+    console.log("token Data:", token);
+
+    axios
+      .get("reservations", {
+        withCredentials: true, // ✅ important!
+      })
+      .then((response) => {
+        console.log("Fetched Reservations:", response?.data); // ✅ Log here
+        setReservations(response?.data);
+      })
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   const cancelReservation = (reservationId) => {
@@ -66,7 +78,7 @@ function ReservationPage() {
         style={{ marginBottom: "25rem" }}
       >
         <h1 className="text-2xl font-bold mb-4">My Reservations</h1>
-        {reservations.map((reservation) => (
+        {reservations?.map((reservation) => (
           <Reservation
             key={reservation._id}
             reservation={reservation}
